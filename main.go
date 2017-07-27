@@ -9,16 +9,12 @@ import (
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Split(bufio.ScanWords)
-	fooCount, barCount := 0, 0
+	count := make(map[string]int)
 	for scanner.Scan() {
 		word := scanner.Text()
-		switch word {
-		case "foo":
-			fooCount++
-		case "bar":
-			barCount++
-		}
+		count[word]++
 	}
-	fmt.Println("foo:", fooCount)
-	fmt.Println("bar:", barCount)
+	for k, v := range count {
+		fmt.Printf("%s: %d\n", k, v)
+	}
 }
